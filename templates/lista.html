@@ -1,0 +1,39 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" href="{{url_for('login')}}">Login</a>
+            <a class="btn btn-danger" href="{{url_for('logout')}}">Logout</a>
+            <a class="btn btn-primary" href="{{url_for('novo')}}">Novo filme</a>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered mt-4">
+        <thead class="thead-default">
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Streaming</th>
+                <th>Ações</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for filme in filmes %}
+            <tr>
+                <td class="filmes-cor">{{ filme.nome }}</td>
+                <td class="filmes-cor">{{ filme.categoria }}</td>
+                <td class="filmes-cor">{{ filme.streaming }}</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{url_for('editar',id=filme.id)}}">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="{{url_for('deletar',id=filme.id)}}">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
